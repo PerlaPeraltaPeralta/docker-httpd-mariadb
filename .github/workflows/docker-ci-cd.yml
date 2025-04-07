@@ -3,7 +3,7 @@ name: Docker CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Se ejecuta cuando se hace push a la rama main
+      - master  # Se ejecuta cuando se hace push a la rama main
 
 jobs:
   build-and-push:
