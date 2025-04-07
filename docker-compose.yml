@@ -1,0 +1,31 @@
+version: '3'
+services:
+  httpd:
+    build: ./httpd
+    ports:
+      - "80:80"
+    volumes:
+      - ./httpd/html:/usr/local/apache2/htdocs/
+    networks:
+      - app-network
+
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3306:3306"  # Exponer el puerto para conexiones externas
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mariadb_data:
